@@ -12,13 +12,15 @@ class StationsViewController: UIViewController, UITableViewDataSource, UITableVi
 
     @IBOutlet weak var tableView: UITableView!
     
+    
+    
     let stationList: [String] = ["Machine de l'île","Hôtel de ville", "Palais des sports","Madeleine"]
     let stationCellIdentifier = "StationCellIdentifier"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: stationCellIdentifier)
+        //self.tableView.register(StationTableViewCell.self, forCellReuseIdentifier: stationCellIdentifier)
         
         tableView.dataSource = self
         tableView.delegate = self   // Same as in storyBoard ctrl to StationView : delegate ...
@@ -31,18 +33,30 @@ class StationsViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = self.tableView.dequeueReusableCell(withIdentifier: stationCellIdentifier)
+        let cell = self.tableView.dequeueReusableCell(withIdentifier: stationCellIdentifier) as! StationTableViewCell
         
-        cell!.textLabel?.text = stationList[indexPath.row]
+//        @IBOutlet weak var availableBikesLabel: UILabel!
+//        @IBOutlet weak var availableSlotsLabel: UILabel!
+//        @IBOutlet weak var stationNameLabel: UILabel!
+//        @IBOutlet weak var distanceLabel: UIView!
+        //cell!.textLabel?.text = stationList[indexPath.row]
         
-        return cell!
+        cell.stationNameLabel.text = stationList[indexPath.row]
+        cell.availableBikesLabel.text = "20 vélos"
+        cell.availableSlotsLabel.text = "43 places"
+        cell.distanceLabel.text = "212 m"
+        
+        return cell
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 50
+    }
 
 }
 

@@ -13,6 +13,7 @@
 		0EC7D2782292F4C300AECD34 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0EC7D2762292F4C300AECD34 /* Main.storyboard */; };
 		0EC7D27A2292F4C300AECD34 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0EC7D2792292F4C300AECD34 /* Assets.xcassets */; };
 		0EC7D27D2292F4C300AECD34 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0EC7D27B2292F4C300AECD34 /* LaunchScreen.storyboard */; };
+		0EC7D2852293EB3A00AECD34 /* StationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC7D2842293EB3A00AECD34 /* StationTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		0EC7D2792292F4C300AECD34 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0EC7D27C2292F4C300AECD34 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0EC7D27E2292F4C300AECD34 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0EC7D2842293EB3A00AECD34 /* StationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				0EC7D2792292F4C300AECD34 /* Assets.xcassets */,
 				0EC7D27B2292F4C300AECD34 /* LaunchScreen.storyboard */,
 				0EC7D27E2292F4C300AECD34 /* Info.plist */,
+				0EC7D2842293EB3A00AECD34 /* StationTableViewCell.swift */,
 			);
 			path = Bicloo;
 			sourceTree = "<group>";
@@ -139,6 +142,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0EC7D2752292F4C300AECD34 /* SecondViewController.swift in Sources */,
+				0EC7D2852293EB3A00AECD34 /* StationTableViewCell.swift in Sources */,
 				0EC7D2712292F4C300AECD34 /* AppDelegate.swift in Sources */,
 				0EC7D2732292F4C300AECD34 /* StationsViewController.swift in Sources */,
 			);
