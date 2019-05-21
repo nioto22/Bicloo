@@ -25,9 +25,16 @@ class StationsViewController: UIViewController, UITableViewDataSource, UITableVi
         tableView.dataSource = self
         tableView.delegate = self   // Same as in storyBoard ctrl to StationView : delegate ...
         
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if let indexPath = tableView.indexPathForSelectedRow {
+            tableView.deselectRow(at: indexPath, animated: false)
+        }
     }
 
+    // MARK: - UITableViewDataSource
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return stationList.count
     }
@@ -35,11 +42,6 @@ class StationsViewController: UIViewController, UITableViewDataSource, UITableVi
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.tableView.dequeueReusableCell(withIdentifier: stationCellIdentifier) as! StationTableViewCell
         
-//        @IBOutlet weak var availableBikesLabel: UILabel!
-//        @IBOutlet weak var availableSlotsLabel: UILabel!
-//        @IBOutlet weak var stationNameLabel: UILabel!
-//        @IBOutlet weak var distanceLabel: UIView!
-        //cell!.textLabel?.text = stationList[indexPath.row]
         
         cell.stationNameLabel.text = stationList[indexPath.row]
         cell.availableBikesLabel.text = "20 vélos"
@@ -49,14 +51,17 @@ class StationsViewController: UIViewController, UITableViewDataSource, UITableVi
         return cell
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50
     }
 
+    // MARK: - UITableViewDelegate
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "showStationDetailSegue", sender: self)
+    
+    }
+    
+    
 }
 
