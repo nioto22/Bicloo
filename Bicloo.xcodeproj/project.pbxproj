@@ -14,6 +14,10 @@
 		0EC7D27A2292F4C300AECD34 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0EC7D2792292F4C300AECD34 /* Assets.xcassets */; };
 		0EC7D27D2292F4C300AECD34 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0EC7D27B2292F4C300AECD34 /* LaunchScreen.storyboard */; };
 		0EC7D2852293EB3A00AECD34 /* StationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC7D2842293EB3A00AECD34 /* StationTableViewCell.swift */; };
+		0EC7D28822941E6500AECD34 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0EC7D28622941E6500AECD34 /* Model.xcdatamodeld */; };
+		0EC7D28F2294249C00AECD34 /* Station+MKAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC7D28D2294249C00AECD34 /* Station+MKAnnotation.swift */; };
+		0EC7D293229428A000AECD34 /* Station+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC7D291229428A000AECD34 /* Station+CoreDataClass.swift */; };
+		0EC7D294229428A000AECD34 /* Station+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC7D292229428A000AECD34 /* Station+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +30,10 @@
 		0EC7D27C2292F4C300AECD34 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0EC7D27E2292F4C300AECD34 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0EC7D2842293EB3A00AECD34 /* StationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationTableViewCell.swift; sourceTree = "<group>"; };
+		0EC7D28722941E6500AECD34 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		0EC7D28D2294249C00AECD34 /* Station+MKAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Station+MKAnnotation.swift"; sourceTree = "<group>"; };
+		0EC7D291229428A000AECD34 /* Station+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Station+CoreDataClass.swift"; sourceTree = "<group>"; };
+		0EC7D292229428A000AECD34 /* Station+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Station+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +70,10 @@
 				0EC7D2722292F4C300AECD34 /* StationsViewController.swift */,
 				0EC7D2742292F4C300AECD34 /* SecondViewController.swift */,
 				0EC7D2762292F4C300AECD34 /* Main.storyboard */,
+				0EC7D28622941E6500AECD34 /* Model.xcdatamodeld */,
+				0EC7D291229428A000AECD34 /* Station+CoreDataClass.swift */,
+				0EC7D292229428A000AECD34 /* Station+CoreDataProperties.swift */,
+				0EC7D28D2294249C00AECD34 /* Station+MKAnnotation.swift */,
 				0EC7D2792292F4C300AECD34 /* Assets.xcassets */,
 				0EC7D27B2292F4C300AECD34 /* LaunchScreen.storyboard */,
 				0EC7D27E2292F4C300AECD34 /* Info.plist */,
@@ -141,8 +153,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0EC7D294229428A000AECD34 /* Station+CoreDataProperties.swift in Sources */,
 				0EC7D2752292F4C300AECD34 /* SecondViewController.swift in Sources */,
 				0EC7D2852293EB3A00AECD34 /* StationTableViewCell.swift in Sources */,
+				0EC7D28F2294249C00AECD34 /* Station+MKAnnotation.swift in Sources */,
+				0EC7D28822941E6500AECD34 /* Model.xcdatamodeld in Sources */,
+				0EC7D293229428A000AECD34 /* Station+CoreDataClass.swift in Sources */,
 				0EC7D2712292F4C300AECD34 /* AppDelegate.swift in Sources */,
 				0EC7D2732292F4C300AECD34 /* StationsViewController.swift in Sources */,
 			);
@@ -340,6 +356,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		0EC7D28622941E6500AECD34 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				0EC7D28722941E6500AECD34 /* Model.xcdatamodel */,
+			);
+			currentVersion = 0EC7D28722941E6500AECD34 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 0EC7D2652292F4C200AECD34 /* Project object */;
 }
