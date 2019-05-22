@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -77,7 +76,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Machines de l'île" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oc9-fJ-hQh">
-                                                    <rect key="frame" x="77.999999999999986" y="14" width="227.66666666666663" height="21"/>
+                                                    <rect key="frame" x="77.999999999999986" y="14.333333333333336" width="227.66666666666663" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="GGz-F4-L44"/>
                                                     </constraints>
@@ -86,7 +85,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="300" verticalHuggingPriority="251" text="422,2 km" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JLp-T1-svb">
-                                                    <rect key="frame" x="313.66666666666669" y="15" width="54.333333333333314" height="19"/>
+                                                    <rect key="frame" x="313.66666666666669" y="15.333333333333336" width="54.333333333333314" height="19"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="19" id="E0h-2c-1y4"/>
                                                         <constraint firstAttribute="width" relation="lessThanOrEqual" constant="58" id="ikF-av-US2"/>
@@ -288,12 +287,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="qc9-61-UxV">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="qc9-61-UxV">
                                 <rect key="frame" x="0.0" y="64" width="414" height="623"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="qc9-61-UxV" firstAttribute="top" secondItem="O1u-W8-tvY" secondAttribute="top" id="08Y-3l-jb3"/>
+                            <constraint firstItem="qc9-61-UxV" firstAttribute="leading" secondItem="O1u-W8-tvY" secondAttribute="leading" id="KbY-pS-BWn"/>
+                            <constraint firstItem="qc9-61-UxV" firstAttribute="bottom" secondItem="O1u-W8-tvY" secondAttribute="bottom" id="X0l-sb-bvf"/>
+                            <constraint firstItem="qc9-61-UxV" firstAttribute="trailing" secondItem="O1u-W8-tvY" secondAttribute="trailing" id="m42-b7-5Qa"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="O1u-W8-tvY"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Carte" image="mapTabBarIcon" id="cPa-gy-q4n"/>
