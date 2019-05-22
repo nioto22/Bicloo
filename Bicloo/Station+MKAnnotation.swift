@@ -38,7 +38,7 @@ extension Station: MKAnnotation {
     }
     
     public var subtitle: String?{
-        return adress
+        return address
     }
     
 }

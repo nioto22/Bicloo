@@ -47,30 +47,6 @@ class MapViewController: UIViewController {
     
     // MARK: - Stations fetching
     
-    func createStation(){
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let context = appDelegate.persistentContainer.viewContext
-        let entity = NSEntityDescription.entity(forEntityName: "Station", in: context)
-        let station = NSManagedObject(entity: entity!, insertInto: context) as? Station
-        
-        station?.identifier = "43"
-        station?.name = "Machine de l'île"
-        station?.latitude = "47.206918"
-        station?.longitude = "-1.564806"
-        station?.adress = "3, boulevard Léon Bureau"
-        station?.availableBikes = "17"
-        station?.availableSlots = "19"
-        station?.lastUpdate = Date() as NSDate
-        station?.status = "OPEN"
-        
-        
-        do {
-            try context.save()
-        } catch {
-            print("context could not save data")
-        }
-    }
-    
     func fetchLocalStations(){
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
@@ -82,9 +58,6 @@ class MapViewController: UIViewController {
             print("context could not save data")
         }
         
-        if stationArray.count == 0 {
-            createStation()
-        }
     }
 
     func addAllMapAnnotations(){

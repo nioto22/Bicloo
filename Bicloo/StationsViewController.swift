@@ -15,12 +15,14 @@ class StationsViewController: UIViewController, UITableViewDataSource, UITableVi
     
     
     
-    let stationList: [String] = ["Machine de l'île","Hôtel de ville", "Palais des sports","Madeleine"]
+    //let stationList: [String] = ["Machine de l'île","Hôtel de ville", "Palais des sports","Madeleine"]
     
     var stationArray: [Station] = []
     var selectedStation: Station!
     
     let stationCellIdentifier = "StationCellIdentifier"
+    
+    let stationsListUrl = URL(string: "https://api.jcdecaux.com/vls/v3/stations?contract=Nantes&apiKey=6bd1c235c5a42007ed686f25ddf9db11c43d6fb7")!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +32,8 @@ class StationsViewController: UIViewController, UITableViewDataSource, UITableVi
         tableView.dataSource = self
         tableView.delegate = self   // Same as in storyBoard ctrl to StationView : delegate ...
         
-        fetchLocalStations()
+        refreshStationsList()
+        fetchOnlineStation()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -41,31 +44,8 @@ class StationsViewController: UIViewController, UITableViewDataSource, UITableVi
     
     // MARK: - Stations fetching
     
-    func createStation(){
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let context = appDelegate.persistentContainer.viewContext
-        let entity = NSEntityDescription.entity(forEntityName: "Station", in: context)
-        let station = NSManagedObject(entity: entity!, insertInto: context) as? Station
-        
-        station?.identifier = "43"
-        station?.name = "Machine de l'île"
-        station?.latitude = "47.206918"
-        station?.longitude = "-1.564806"
-        station?.adress = "3, boulevard Léon Bureau"
-        station?.availableBikes = "17"
-        station?.availableSlots = "19"
-        station?.lastUpdate = Date() as NSDate
-        station?.status = "OPEN"
-        
-        
-        do {
-            try context.save()
-        } catch {
-            print("context could not save data")
-        }
-    }
     
-    func fetchLocalStations(){
+    func refreshStationsList(){
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Station")
@@ -76,9 +56,6 @@ class StationsViewController: UIViewController, UITableViewDataSource, UITableVi
             print("context could not save data")
         }
         
-        if stationArray.count == 0 {
-            createStation()
-        }
         tableView.reloadData()
     }
 
@@ -121,6 +98,111 @@ class StationsViewController: UIViewController, UITableViewDataSource, UITableVi
         }
     }
     
+    // MARK: - HTTP Request
     
+    func fetchOnlineStation(){
+        let session = URLSession.shared
+        let getOnlineStations = session.dataTask(with: stationsListUrl) { (data, response, error) in
+            
+            if error != nil {
+                print("Error in http task getOnlineStations")
+                print(error)
+                return
+            }
+            
+            guard let httpResponse = response as? HTTPURLResponse,
+                (200...299).contains(httpResponse.statusCode)
+                else {
+                    print("http status code is not ok in FetchOnlineStation")
+                    print(response)
+                    return
+            }
+            
+            guard let mime = response?.mimeType, mime == "application/json" else {
+                print("Wrong MIME type!")
+                return
+            }
+            
+            do {
+                let jsonResponse = try JSONSerialization.jsonObject(with: data!, options: [])
+                guard let stationsJsonArray = jsonResponse as? [[String: Any]] else {
+                    return
+                }
+                DispatchQueue.main.async {
+                    self.saveStationsInLocal(stationsArray: stationsJsonArray)
+                }
+                
+                
+            } catch {
+                print("JSON error: \(error.localizedDescription)")
+            }
+            
+         
+        }
+        getOnlineStations.resume()
+    }
+    
+    
+    func saveStationsInLocal(stationsArray: [[String: Any]]){
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        let entity = NSEntityDescription.entity(forEntityName: "Station", in: context)
+        
+
+        for station in stationsArray {
+            
+            let newStation = NSManagedObject(entity: entity!, insertInto: context) as? Station
+            
+            if let identifier = station["number"] as? Int {
+                newStation?.identifier = String(identifier)
+            }
+            if let name = station["name"] as? String {
+            let nameRegex = try? NSRegularExpression(pattern: "#[0-9]*( )?-( )?", options: NSRegularExpression.Options.caseInsensitive)
+                let range = NSMakeRange(0, name.count)
+            let formattedName = nameRegex?.stringByReplacingMatches(in: name, options: [], range: range, withTemplate: "")
+            newStation?.name = formattedName
+                
+               
+            }
+
+            if let position = station["position"] as? [String: Any] {
+                if let latitude = position["latitude"] as? Double {
+                    newStation?.latitude = String(latitude)
+                }
+                if let longitude = position["longitude"] as? Double {
+                    newStation?.longitude = String(longitude)
+                }
+            }
+            if let address = station["address"] as? String {
+                newStation?.address = address
+            }
+            if let mainStands = station["mainStands"] as? [String: Any] {
+                if let availabilities = mainStands["availabilities"] as? [String: Any] {
+                    if let availableBikes = availabilities["bikes"] as? Int {
+                        newStation?.availableBikes = String(availableBikes)
+                    }
+                    if let availableSlots = availabilities["stands"] as? Int {
+                        newStation?.availableSlots = String(availableSlots)
+                    }
+                }
+            }
+            if let lastUpdate = station["lastUpdate"] as? String {
+                // let dateFormater = ISO8601DateFormatter() -> easiest way
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+                if let date = dateFormatter.date(from: lastUpdate) {
+                    newStation?.lastUpdate = date as NSDate
+                }
+            }
+            
+        }
+
+        do {
+            try context.save()
+        } catch {
+            print("context could not save data")
+        }
+        refreshStationsList()
+    }
 }
 
