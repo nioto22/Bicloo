@@ -27,7 +27,7 @@ class DetailViewController: UIViewController {
         mapView.addAnnotation(selectedStation)
         
         let locationRadius = CLLocationDistance(4000)
-        let mapRegion = MKCoordinateRegionMakeWithDistance(selectedStation.coordinate, locationRadius,locationRadius)
+        let mapRegion = MKCoordinateRegion.init(center: selectedStation.coordinate, latitudinalMeters: locationRadius,longitudinalMeters: locationRadius)
         mapView.setRegion(mapRegion, animated: false)
     
     }
@@ -36,7 +36,7 @@ class DetailViewController: UIViewController {
         super.viewDidAppear(animated)
         
         let locationRadius = CLLocationDistance(1000)
-        let mapRegion = MKCoordinateRegionMakeWithDistance(selectedStation.coordinate, locationRadius,locationRadius)
+        let mapRegion = MKCoordinateRegion.init(center: selectedStation.coordinate, latitudinalMeters: locationRadius,longitudinalMeters: locationRadius)
         mapView.setRegion(mapRegion, animated: true)
     }
 

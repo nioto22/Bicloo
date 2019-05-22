@@ -25,7 +25,7 @@ class MapViewController: UIViewController {
         
         let locationRadius = CLLocationDistance(8000)
         let mapCenter = CLLocationCoordinate2D(latitude: 47.2162055, longitude: -1.5494957)
-        let mapRegion = MKCoordinateRegionMakeWithDistance(mapCenter, locationRadius,locationRadius)
+        let mapRegion = MKCoordinateRegion.init(center: mapCenter, latitudinalMeters: locationRadius,longitudinalMeters: locationRadius)
         mapView.setRegion(mapRegion, animated: false)
     }
 
