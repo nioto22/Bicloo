@@ -33,7 +33,7 @@ class StationsViewController: UIViewController, UITableViewDataSource, UITableVi
         tableView.delegate = self   // Same as in storyBoard ctrl to StationView : delegate ...
         
         refreshStationsList()
-        fetchOnlineStation()
+        parseStationsJSON()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -100,7 +100,7 @@ class StationsViewController: UIViewController, UITableViewDataSource, UITableVi
     
     // MARK: - HTTP Request
     
-    func fetchOnlineStation(){
+    func parseStationsJSON(){
         let session = URLSession.shared
         let getOnlineStations = session.dataTask(with: stationsListUrl) { (data, response, error) in
             
@@ -149,49 +149,58 @@ class StationsViewController: UIViewController, UITableViewDataSource, UITableVi
         let entity = NSEntityDescription.entity(forEntityName: "Station", in: context)
         
 
-        for station in stationsArray {
+        for stationDict in stationsArray {
             
-            let newStation = NSManagedObject(entity: entity!, insertInto: context) as? Station
             
-            if let identifier = station["number"] as? Int {
-                newStation?.identifier = String(identifier)
+            
+            guard let stationNumber = stationDict["number"] as? Int else {
+                continue
             }
-            if let name = station["name"] as? String {
+            
+            var station = stationAlreadyExists(identifier: String(stationNumber))
+            if station == nil {
+                station = NSManagedObject(entity: entity!, insertInto: context) as? Station
+                station?.identifier = String(stationNumber)
+            }
+            
+            
+            
+            if let name = stationDict["name"] as? String {
             let nameRegex = try? NSRegularExpression(pattern: "#[0-9]*( )?-( )?", options: NSRegularExpression.Options.caseInsensitive)
                 let range = NSMakeRange(0, name.count)
             let formattedName = nameRegex?.stringByReplacingMatches(in: name, options: [], range: range, withTemplate: "")
-            newStation?.name = formattedName
+            station?.name = formattedName
                 
                
             }
 
-            if let position = station["position"] as? [String: Any] {
+            if let position = stationDict["position"] as? [String: Any] {
                 if let latitude = position["latitude"] as? Double {
-                    newStation?.latitude = String(latitude)
+                    station?.latitude = String(latitude)
                 }
                 if let longitude = position["longitude"] as? Double {
-                    newStation?.longitude = String(longitude)
+                    station?.longitude = String(longitude)
                 }
             }
-            if let address = station["address"] as? String {
-                newStation?.address = address
+            if let address = stationDict["address"] as? String {
+                station?.address = address
             }
-            if let mainStands = station["mainStands"] as? [String: Any] {
+            if let mainStands = stationDict["mainStands"] as? [String: Any] {
                 if let availabilities = mainStands["availabilities"] as? [String: Any] {
                     if let availableBikes = availabilities["bikes"] as? Int {
-                        newStation?.availableBikes = String(availableBikes)
+                        station?.availableBikes = String(availableBikes)
                     }
                     if let availableSlots = availabilities["stands"] as? Int {
-                        newStation?.availableSlots = String(availableSlots)
+                        station?.availableSlots = String(availableSlots)
                     }
                 }
             }
-            if let lastUpdate = station["lastUpdate"] as? String {
+            if let lastUpdate = stationDict["lastUpdate"] as? String {
                 // let dateFormater = ISO8601DateFormatter() -> easiest way
                 let dateFormatter = DateFormatter()
                 dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
                 if let date = dateFormatter.date(from: lastUpdate) {
-                    newStation?.lastUpdate = date as NSDate
+                    station?.lastUpdate = date as NSDate
                 }
             }
             
@@ -204,5 +213,24 @@ class StationsViewController: UIViewController, UITableViewDataSource, UITableVi
         }
         refreshStationsList()
     }
+    
+    func stationAlreadyExists(identifier: String) -> Station?{
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Station")
+        fetchRequest.predicate = NSPredicate(format: "identifier == %@", identifier)
+        
+        do {
+            stationArray = try context.fetch(fetchRequest) as! [Station]
+            
+            if (stationArray.count > 0){
+                return stationArray.first
+            }
+        } catch {
+            print("context could not save data")
+        }
+        return nil
+    }
+    
 }
 
