@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		0EC7D2712292F4C300AECD34 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC7D2702292F4C300AECD34 /* AppDelegate.swift */; };
 		0EC7D2732292F4C300AECD34 /* StationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC7D2722292F4C300AECD34 /* StationsViewController.swift */; };
-		0EC7D2752292F4C300AECD34 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC7D2742292F4C300AECD34 /* SecondViewController.swift */; };
 		0EC7D2782292F4C300AECD34 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0EC7D2762292F4C300AECD34 /* Main.storyboard */; };
 		0EC7D27A2292F4C300AECD34 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0EC7D2792292F4C300AECD34 /* Assets.xcassets */; };
 		0EC7D27D2292F4C300AECD34 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0EC7D27B2292F4C300AECD34 /* LaunchScreen.storyboard */; };
@@ -18,13 +17,14 @@
 		0EC7D28F2294249C00AECD34 /* Station+MKAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC7D28D2294249C00AECD34 /* Station+MKAnnotation.swift */; };
 		0EC7D293229428A000AECD34 /* Station+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC7D291229428A000AECD34 /* Station+CoreDataClass.swift */; };
 		0EC7D294229428A000AECD34 /* Station+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC7D292229428A000AECD34 /* Station+CoreDataProperties.swift */; };
+		0EC7D296229443BF00AECD34 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC7D295229443BF00AECD34 /* DetailViewController.swift */; };
+		0EC7D29822944DA300AECD34 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC7D29722944DA300AECD34 /* MapViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0EC7D26D2292F4C300AECD34 /* Bicloo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bicloo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0EC7D2702292F4C300AECD34 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0EC7D2722292F4C300AECD34 /* StationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationsViewController.swift; sourceTree = "<group>"; };
-		0EC7D2742292F4C300AECD34 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		0EC7D2772292F4C300AECD34 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0EC7D2792292F4C300AECD34 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0EC7D27C2292F4C300AECD34 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -34,6 +34,8 @@
 		0EC7D28D2294249C00AECD34 /* Station+MKAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Station+MKAnnotation.swift"; sourceTree = "<group>"; };
 		0EC7D291229428A000AECD34 /* Station+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Station+CoreDataClass.swift"; sourceTree = "<group>"; };
 		0EC7D292229428A000AECD34 /* Station+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Station+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		0EC7D295229443BF00AECD34 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		0EC7D29722944DA300AECD34 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,7 +70,8 @@
 			children = (
 				0EC7D2702292F4C300AECD34 /* AppDelegate.swift */,
 				0EC7D2722292F4C300AECD34 /* StationsViewController.swift */,
-				0EC7D2742292F4C300AECD34 /* SecondViewController.swift */,
+				0EC7D295229443BF00AECD34 /* DetailViewController.swift */,
+				0EC7D29722944DA300AECD34 /* MapViewController.swift */,
 				0EC7D2762292F4C300AECD34 /* Main.storyboard */,
 				0EC7D28622941E6500AECD34 /* Model.xcdatamodeld */,
 				0EC7D291229428A000AECD34 /* Station+CoreDataClass.swift */,
@@ -153,10 +156,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0EC7D296229443BF00AECD34 /* DetailViewController.swift in Sources */,
 				0EC7D294229428A000AECD34 /* Station+CoreDataProperties.swift in Sources */,
-				0EC7D2752292F4C300AECD34 /* SecondViewController.swift in Sources */,
 				0EC7D2852293EB3A00AECD34 /* StationTableViewCell.swift in Sources */,
 				0EC7D28F2294249C00AECD34 /* Station+MKAnnotation.swift in Sources */,
+				0EC7D29822944DA300AECD34 /* MapViewController.swift in Sources */,
 				0EC7D28822941E6500AECD34 /* Model.xcdatamodeld in Sources */,
 				0EC7D293229428A000AECD34 /* Station+CoreDataClass.swift in Sources */,
 				0EC7D2712292F4C300AECD34 /* AppDelegate.swift in Sources */,
