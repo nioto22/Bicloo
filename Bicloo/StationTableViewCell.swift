@@ -25,21 +25,21 @@ class StationTableViewCell: UITableViewCell {
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
+        let availableBikesColor = availableBikesLabel.backgroundColor
+        let availableSlotsColor = availableSlotsLabel.backgroundColor
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-        availableBikesLabel.backgroundColor = UIColor(red: 0, green: 143/255, blue: 0, alpha: 1)
-        availableSlotsLabel.backgroundColor = UIColor(red: 0, green: 143/255, blue: 0, alpha: 1)
+        availableBikesLabel.backgroundColor = availableBikesColor
+        availableSlotsLabel.backgroundColor = availableSlotsColor
         
         
     }
     
     override func setHighlighted(_ highlighted: Bool, animated: Bool) {
+        let availableBikesColor = availableBikesLabel.backgroundColor
+        let availableSlotsColor = availableSlotsLabel.backgroundColor
         super.setHighlighted(highlighted, animated: animated)
-        
-        availableBikesLabel.backgroundColor = UIColor(red: 0, green: 143/255, blue: 0, alpha: 1)
-        availableSlotsLabel.backgroundColor = UIColor(red: 0, green: 143/255, blue: 0, alpha: 1)
-        
+        availableBikesLabel.backgroundColor = availableBikesColor
+        availableSlotsLabel.backgroundColor = availableSlotsColor
     }
 
 }

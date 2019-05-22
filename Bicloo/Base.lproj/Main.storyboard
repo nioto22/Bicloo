@@ -155,6 +155,9 @@
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="x13-mv-nQV">
                                 <rect key="frame" x="0.0" y="64" width="414" height="423"/>
+                                <connections>
+                                    <outlet property="delegate" destination="w6f-JP-pVh" id="IHf-0l-KA6"/>
+                                </connections>
                             </mapView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dBd-Lu-QfB">
                                 <rect key="frame" x="0.0" y="487" width="414" height="200"/>
@@ -289,6 +292,9 @@
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="qc9-61-UxV">
                                 <rect key="frame" x="0.0" y="64" width="414" height="623"/>
+                                <connections>
+                                    <outlet property="delegate" destination="8rJ-Kc-sve" id="6Bn-n7-UsI"/>
+                                </connections>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -301,10 +307,24 @@
                         <viewLayoutGuide key="safeArea" id="O1u-W8-tvY"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Carte" image="mapTabBarIcon" id="cPa-gy-q4n"/>
-                    <navigationItem key="navigationItem" id="34L-be-GZn"/>
+                    <navigationItem key="navigationItem" id="34L-be-GZn">
+                        <nil key="title"/>
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="vvR-3j-7tb">
+                            <rect key="frame" x="146.66666666666666" y="7" width="120.99999999999997" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="Vélos"/>
+                                <segment title="Places"/>
+                            </segments>
+                            <connections>
+                                <action selector="segmentedControlValueChanged:" destination="8rJ-Kc-sve" eventType="valueChanged" id="Tnc-DC-qn2"/>
+                            </connections>
+                        </segmentedControl>
+                    </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="qc9-61-UxV" id="cN1-gl-9C3"/>
-                        <segue destination="w6f-JP-pVh" kind="show" id="7gr-r1-lpb"/>
+                        <outlet property="segmentedControl" destination="vvR-3j-7tb" id="oGz-lX-ToR"/>
+                        <segue destination="w6f-JP-pVh" kind="show" identifier="showStationDetailSegue" id="7gr-r1-lpb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>

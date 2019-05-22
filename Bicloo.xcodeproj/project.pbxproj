@@ -19,6 +19,7 @@
 		0EC7D294229428A000AECD34 /* Station+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC7D292229428A000AECD34 /* Station+CoreDataProperties.swift */; };
 		0EC7D296229443BF00AECD34 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC7D295229443BF00AECD34 /* DetailViewController.swift */; };
 		0EC7D29822944DA300AECD34 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC7D29722944DA300AECD34 /* MapViewController.swift */; };
+		6F65A63722957D7600DC8FC7 /* UIColor+Bicloo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F65A63622957D7600DC8FC7 /* UIColor+Bicloo.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		0EC7D292229428A000AECD34 /* Station+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Station+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		0EC7D295229443BF00AECD34 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		0EC7D29722944DA300AECD34 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		6F65A63622957D7600DC8FC7 /* UIColor+Bicloo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Bicloo.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +74,7 @@
 				0EC7D2722292F4C300AECD34 /* StationsViewController.swift */,
 				0EC7D295229443BF00AECD34 /* DetailViewController.swift */,
 				0EC7D29722944DA300AECD34 /* MapViewController.swift */,
+				0EC7D2842293EB3A00AECD34 /* StationTableViewCell.swift */,
 				0EC7D2762292F4C300AECD34 /* Main.storyboard */,
 				0EC7D28622941E6500AECD34 /* Model.xcdatamodeld */,
 				0EC7D291229428A000AECD34 /* Station+CoreDataClass.swift */,
@@ -80,7 +83,7 @@
 				0EC7D2792292F4C300AECD34 /* Assets.xcassets */,
 				0EC7D27B2292F4C300AECD34 /* LaunchScreen.storyboard */,
 				0EC7D27E2292F4C300AECD34 /* Info.plist */,
-				0EC7D2842293EB3A00AECD34 /* StationTableViewCell.swift */,
+				6F65A63622957D7600DC8FC7 /* UIColor+Bicloo.swift */,
 			);
 			path = Bicloo;
 			sourceTree = "<group>";
@@ -166,6 +169,7 @@
 				0EC7D293229428A000AECD34 /* Station+CoreDataClass.swift in Sources */,
 				0EC7D2712292F4C300AECD34 /* AppDelegate.swift in Sources */,
 				0EC7D2732292F4C300AECD34 /* StationsViewController.swift in Sources */,
+				6F65A63722957D7600DC8FC7 /* UIColor+Bicloo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,12 +10,19 @@ import UIKit
 import MapKit
 import CoreData
 
-class MapViewController: UIViewController {
+class MapViewController: UIViewController, MKMapViewDelegate {
 
+    enum DisplayMode: Int {
+        case Bikes = 0
+        case Slots = 1
+    }
     
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
     
     var stationArray: [Station] = []
+    var selectedStation: Station!
+    var displayMode: DisplayMode = DisplayMode.Bikes
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +34,9 @@ class MapViewController: UIViewController {
         let mapCenter = CLLocationCoordinate2D(latitude: 47.2162055, longitude: -1.5494957)
         let mapRegion = MKCoordinateRegion.init(center: mapCenter, latitudinalMeters: locationRadius,longitudinalMeters: locationRadius)
         mapView.setRegion(mapRegion, animated: false)
+        mapView.delegate = self
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -65,5 +75,68 @@ class MapViewController: UIViewController {
            mapView.addAnnotation(station)
         }
     }
-
+    
+    func refreshMapAnnotations(){
+        mapView.removeAnnotations(mapView.annotations)
+        addAllMapAnnotations()
+    }
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        
+        let identifier = "StationAnnotation"
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKMarkerAnnotationView
+        
+        if annotationView == nil {
+            annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            
+                let detailButton = UIButton(type: .detailDisclosure)
+                detailButton.tintColor = UIColor.darkGray
+                annotationView?.rightCalloutAccessoryView = detailButton
+                annotationView?.canShowCallout = true
+        }else {
+            annotationView!.annotation = annotation
+        }
+        
+        if let stationAnnotation = annotation as? Station {
+            if displayMode == DisplayMode.Slots {
+                annotationView?.glyphText = stationAnnotation.availableBikes
+                annotationView?.markerTintColor = stationAnnotation.availableBikesColor
+            } else {
+                annotationView?.glyphText = stationAnnotation.availableSlots
+                annotationView?.markerTintColor = stationAnnotation.availableSlotsColor
+            }
+            
+        } else {
+            print("Error : annotation is not a Station")
+        }
+       return annotationView
+    }
+    
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        if let station = view.annotation as? Station {
+            selectedStation = station
+            performSegue(withIdentifier: "showStationDetailSegue", sender: self)
+        }
+    }
+        
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showStationDetailSegue" {
+            if let detailVC = segue.destination as? DetailViewController{
+                detailVC.selectedStation = selectedStation
+            }
+        }
+    }
+    
+    
+    @IBAction func segmentedControlValueChanged(_ sender: Any) {
+        if segmentedControl.selectedSegmentIndex == DisplayMode.Slots.rawValue {
+            displayMode = DisplayMode.Slots
+        } else {
+            displayMode = DisplayMode.Bikes
+        }
+        refreshMapAnnotations()
+    }
+    
+    
 }
+

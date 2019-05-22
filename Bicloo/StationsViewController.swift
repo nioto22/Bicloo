@@ -72,8 +72,10 @@ class StationsViewController: UIViewController, UITableViewDataSource, UITableVi
         let station = stationArray[indexPath.row]
         
         cell.stationNameLabel.text = station.name
-        cell.availableBikesLabel.text = (station.availableBikes ?? "0") + " vélos"
-        cell.availableSlotsLabel.text = (station.availableSlots ?? "0") + " places"
+        cell.availableBikesLabel.text = station.availableBikesString
+        cell.availableSlotsLabel.text = station.availableSlotsString
+        cell.availableBikesLabel.backgroundColor = station.availableBikesColor
+        cell.availableSlotsLabel.backgroundColor = station.availableSlotsColor
         cell.distanceLabel.text = "212 m"
         
         return cell
