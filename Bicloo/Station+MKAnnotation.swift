@@ -41,6 +41,16 @@ extension Station: MKAnnotation {
         return address
     }
     
+    public var distanceString: String?{
+        if (distance == 0.0){
+            return ""
+        } else if distance >= 1000 {
+            return String(format: "%.1f km", distance/1000)
+        }
+        return String(format: "%.f m", distance)
+    
+    }
+    
     public var availableBikesColor: UIColor {
         if availableBikes != nil {
             if let availableBikesInt = Int(availableBikes!){

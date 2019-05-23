@@ -11,7 +11,9 @@ import CoreData
 import NVActivityIndicatorView
 import CoreLocation
 
-class StationsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate {
+class StationsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate, UISearchResultsUpdating{
+
+    
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -20,8 +22,9 @@ class StationsViewController: UIViewController, UITableViewDataSource, UITableVi
     
     //let stationList: [String] = ["Machine de l'île","Hôtel de ville", "Palais des sports","Madeleine"]
     
-    var stationArray: [Station] = []
+    var stationsArray: [Station] = []
     var selectedStation: Station!
+    
     
     let stationCellIdentifier = "StationCellIdentifier"
     
@@ -29,6 +32,9 @@ class StationsViewController: UIViewController, UITableViewDataSource, UITableVi
     
     let locationManager = CLLocationManager()
     var userLocation: CLLocation!
+    
+    let searchController = UISearchController(searchResultsController: nil)
+    var filteredStationsArray: [Station] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,6 +50,15 @@ class StationsViewController: UIViewController, UITableViewDataSource, UITableVi
         
         activityIndicatorView.type = NVActivityIndicatorType.ballClipRotatePulse
         activityIndicatorView.color = UIColor.BiclooColor.Orange
+        
+        searchController.searchResultsUpdater = self
+        self.definesPresentationContext = true
+        // Place the search bar in the navigation item's title view.
+        self.navigationItem.titleView = searchController.searchBar
+        searchController.hidesNavigationBarDuringPresentation = false
+        searchController.dimsBackgroundDuringPresentation = false
+        searchController.searchBar.sizeToFit()
+        searchController.searchBar.placeholder = "Rechercher une station"
         
         refreshStationsList()
         parseStationsJSON()
@@ -65,7 +80,7 @@ class StationsViewController: UIViewController, UITableViewDataSource, UITableVi
         let sortDescriptor = NSSortDescriptor(key: "distance", ascending: true)
         fetchRequest.sortDescriptors = [sortDescriptor]
         do {
-        stationArray = try context.fetch(fetchRequest) as! [Station]
+        stationsArray = try context.fetch(fetchRequest) as! [Station]
         } catch {
             print("context could not save data")
         }
@@ -77,20 +92,19 @@ class StationsViewController: UIViewController, UITableViewDataSource, UITableVi
     // MARK: - UITableViewDataSource
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return stationArray.count
+        return isSearchActivated() ? filteredStationsArray.count : stationsArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.tableView.dequeueReusableCell(withIdentifier: stationCellIdentifier) as! StationTableViewCell
-        
-        let station = stationArray[indexPath.row]
+        let station = isSearchActivated() ? filteredStationsArray[indexPath.row] : stationsArray[indexPath.row]
         
         cell.stationNameLabel.text = station.name
         cell.availableBikesLabel.text = station.availableBikesString
         cell.availableSlotsLabel.text = station.availableSlotsString
         cell.availableBikesLabel.backgroundColor = station.availableBikesColor
         cell.availableSlotsLabel.backgroundColor = station.availableSlotsColor
-        cell.distanceLabel.text = String(station.distance)
+        cell.distanceLabel.text = station.distanceString
         
         return cell
     }
@@ -102,7 +116,7 @@ class StationsViewController: UIViewController, UITableViewDataSource, UITableVi
     // MARK: - UITableViewDelegate
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedStation = stationArray[indexPath.row]
+        selectedStation = isSearchActivated() ? filteredStationsArray[indexPath.row] : stationsArray[indexPath.row]
         performSegue(withIdentifier: "showStationDetailSegue", sender: self)
     }
     
@@ -114,11 +128,42 @@ class StationsViewController: UIViewController, UITableViewDataSource, UITableVi
         }
     }
     
+    // MARK: - UISearchController
+    
+    func filterContent(for searchText: String) {
+        // Update the searchResults array with matches
+        // in our entries based on the title value.
+        if let searchText = searchController.searchBar.text, !searchText.isEmpty {
+            filteredStationsArray = stationsArray.filter{
+                station in
+                return (station.name?.lowercased().contains(searchText.lowercased()) ?? nil)!
+            }
+        }
+    }
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        if let searchText = searchController.searchBar.text {
+            filterContent(for: searchText)
+            // Reload the table view with the search result data.
+            tableView.reloadData()
+        }
+    }
+    
+    func isSearchActivated() -> Bool {
+        return searchController.isActive && !searchBarIsEmpty()
+    }
+    
+    func searchBarIsEmpty() -> Bool {
+        return searchController.searchBar.text?.isEmpty ?? true
+    }
+    
+    
+    
     // MARK: - HTTP Request
     
     func parseStationsJSON(){
         
-        if stationArray.count == 0 {
+        if stationsArray.count == 0 {
             activityIndicatorView.startAnimating()
         }
         
@@ -146,6 +191,7 @@ class StationsViewController: UIViewController, UITableViewDataSource, UITableVi
             
             DispatchQueue.main.async {
                 self.activityIndicatorView.stopAnimating()
+                // Add here method pull to refresh
             }
             
             do {
@@ -246,18 +292,17 @@ class StationsViewController: UIViewController, UITableViewDataSource, UITableVi
         fetchRequest.predicate = NSPredicate(format: "identifier == %@", identifier)
         
         do {
-            stationArray = try context.fetch(fetchRequest) as! [Station]
+            stationsArray = try context.fetch(fetchRequest) as! [Station]
             
-            if (stationArray.count > 0){
-                return stationArray.first
+            if (stationsArray.count > 0){
+                return stationsArray.first
             }
         } catch {
             print("context could not save data")
         }
         return nil
     }
-    
-    // MARK: - UserLocation
+
     
     // MARK: - CLLocationManagerDelegate
     func locationManager(_ manager: CLLocationManager,
@@ -266,7 +311,7 @@ class StationsViewController: UIViewController, UITableViewDataSource, UITableVi
         userLocation = locations.last
         }
         
-        for station in stationArray {
+        for station in stationsArray {
             let stationLocation = CLLocation(latitude: station.coordinate.latitude, longitude: station.coordinate.longitude)
             if let stationDistance = self.userLocation?.distance(from: stationLocation){
                 station.distance = Double(lround(stationDistance))
@@ -275,8 +320,8 @@ class StationsViewController: UIViewController, UITableViewDataSource, UITableVi
             }
         }
         
-        let sortedStations = stationArray.sorted(by: {$0.distance < $1.distance})
-        stationArray = sortedStations
+        let sortedStations = stationsArray.sorted(by: {$0.distance < $1.distance})
+        stationsArray = sortedStations
         tableView.reloadData()
     }
     

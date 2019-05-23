@@ -84,7 +84,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="300" verticalHuggingPriority="251" text="422,2 km" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JLp-T1-svb">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="300" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="422,2 km" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JLp-T1-svb">
                                                     <rect key="frame" x="313.66666666666669" y="15.333333333333336" width="54.333333333333314" height="19"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="19" id="E0h-2c-1y4"/>
@@ -383,6 +383,6 @@
         <image name="nearMeButton" width="50" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="7gr-r1-lpb"/>
+        <segue reference="nol-eb-ml5"/>
     </inferredMetricsTieBreakers>
 </document>
