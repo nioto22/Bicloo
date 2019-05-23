@@ -124,11 +124,21 @@
                                     <outlet property="delegate" destination="9pv-A4-QxB" id="Voo-lJ-OBj"/>
                                 </connections>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D6p-nv-Xwi" customClass="NVActivityIndicatorView" customModule="NVActivityIndicatorView">
+                                <rect key="frame" x="182" y="343" width="50" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="JMF-wp-B9K"/>
+                                    <constraint firstAttribute="height" constant="50" id="tmY-IF-rvx"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="cyB-eG-Qn8" firstAttribute="trailing" secondItem="PQr-Ze-W5v" secondAttribute="trailing" id="EJm-KD-Cqx"/>
+                            <constraint firstItem="D6p-nv-Xwi" firstAttribute="centerX" secondItem="tsR-hK-woN" secondAttribute="centerX" id="I4q-rg-eau"/>
                             <constraint firstItem="cyB-eG-Qn8" firstAttribute="bottom" secondItem="PQr-Ze-W5v" secondAttribute="bottom" id="gqo-J0-9Cf"/>
+                            <constraint firstItem="D6p-nv-Xwi" firstAttribute="centerY" secondItem="tsR-hK-woN" secondAttribute="centerY" id="mzn-TG-fbH"/>
                             <constraint firstItem="cyB-eG-Qn8" firstAttribute="leading" secondItem="PQr-Ze-W5v" secondAttribute="leading" id="rxG-Iy-Rdj"/>
                             <constraint firstItem="cyB-eG-Qn8" firstAttribute="top" secondItem="PQr-Ze-W5v" secondAttribute="top" id="zwn-8S-4ej"/>
                         </constraints>
@@ -137,6 +147,7 @@
                     <tabBarItem key="tabBarItem" title="Stations" image="listTabBarIcon" id="acW-dT-cKf"/>
                     <navigationItem key="navigationItem" id="dHP-wf-PkB"/>
                     <connections>
+                        <outlet property="activityIndicatorView" destination="D6p-nv-Xwi" id="YbW-4J-0kT"/>
                         <outlet property="tableView" destination="cyB-eG-Qn8" id="sQC-2L-zmq"/>
                         <segue destination="w6f-JP-pVh" kind="show" identifier="showStationDetailSegue" id="nol-eb-ml5"/>
                     </connections>
@@ -153,7 +164,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="x13-mv-nQV">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="x13-mv-nQV">
                                 <rect key="frame" x="0.0" y="64" width="414" height="423"/>
                                 <connections>
                                     <outlet property="delegate" destination="w6f-JP-pVh" id="IHf-0l-KA6"/>
@@ -290,19 +301,32 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="qc9-61-UxV">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qc9-61-UxV">
                                 <rect key="frame" x="0.0" y="64" width="414" height="623"/>
                                 <connections>
                                     <outlet property="delegate" destination="8rJ-Kc-sve" id="6Bn-n7-UsI"/>
                                 </connections>
                             </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vic-nS-jn8">
+                                <rect key="frame" x="359" y="632" width="45" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="45" id="7N1-NU-Oqz"/>
+                                    <constraint firstAttribute="height" constant="45" id="BdH-cc-gVI"/>
+                                </constraints>
+                                <state key="normal" title="Button" image="nearMeButton"/>
+                                <connections>
+                                    <action selector="nearMeButtonPressed:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="7Y7-LS-5Rb"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="qc9-61-UxV" firstAttribute="top" secondItem="O1u-W8-tvY" secondAttribute="top" id="08Y-3l-jb3"/>
                             <constraint firstItem="qc9-61-UxV" firstAttribute="leading" secondItem="O1u-W8-tvY" secondAttribute="leading" id="KbY-pS-BWn"/>
+                            <constraint firstItem="O1u-W8-tvY" firstAttribute="trailing" secondItem="Vic-nS-jn8" secondAttribute="trailing" constant="10" id="Mka-fF-twp"/>
                             <constraint firstItem="qc9-61-UxV" firstAttribute="bottom" secondItem="O1u-W8-tvY" secondAttribute="bottom" id="X0l-sb-bvf"/>
                             <constraint firstItem="qc9-61-UxV" firstAttribute="trailing" secondItem="O1u-W8-tvY" secondAttribute="trailing" id="m42-b7-5Qa"/>
+                            <constraint firstItem="O1u-W8-tvY" firstAttribute="bottom" secondItem="Vic-nS-jn8" secondAttribute="bottom" constant="10" id="v93-XN-Jmy"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="O1u-W8-tvY"/>
                     </view>
@@ -323,6 +347,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="qc9-61-UxV" id="cN1-gl-9C3"/>
+                        <outlet property="nearMeButton" destination="Vic-nS-jn8" id="fXB-uX-ZVb"/>
                         <outlet property="segmentedControl" destination="vvR-3j-7tb" id="oGz-lX-ToR"/>
                         <segue destination="w6f-JP-pVh" kind="show" identifier="showStationDetailSegue" id="7gr-r1-lpb"/>
                     </connections>
@@ -355,6 +380,7 @@
     <resources>
         <image name="listTabBarIcon" width="30" height="30"/>
         <image name="mapTabBarIcon" width="30" height="30"/>
+        <image name="nearMeButton" width="50" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="7gr-r1-lpb"/>

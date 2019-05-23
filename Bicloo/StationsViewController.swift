@@ -8,11 +8,14 @@
 
 import UIKit
 import CoreData
+import NVActivityIndicatorView
+import CoreLocation
 
-class StationsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class StationsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, CLLocationManagerDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var activityIndicatorView: NVActivityIndicatorView!
     
     
     //let stationList: [String] = ["Machine de l'île","Hôtel de ville", "Palais des sports","Madeleine"]
@@ -24,13 +27,23 @@ class StationsViewController: UIViewController, UITableViewDataSource, UITableVi
     
     let stationsListUrl = URL(string: "https://api.jcdecaux.com/vls/v3/stations?contract=Nantes&apiKey=6bd1c235c5a42007ed686f25ddf9db11c43d6fb7")!
     
+    let locationManager = CLLocationManager()
+    var userLocation: CLLocation!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         //self.tableView.register(StationTableViewCell.self, forCellReuseIdentifier: stationCellIdentifier)
         
+        locationManager.delegate = self
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
+        
         tableView.dataSource = self
         tableView.delegate = self   // Same as in storyBoard ctrl to StationView : delegate ...
+        
+        activityIndicatorView.type = NVActivityIndicatorType.ballClipRotatePulse
+        activityIndicatorView.color = UIColor.BiclooColor.Orange
         
         refreshStationsList()
         parseStationsJSON()
@@ -49,7 +62,8 @@ class StationsViewController: UIViewController, UITableViewDataSource, UITableVi
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Station")
-        
+        let sortDescriptor = NSSortDescriptor(key: "distance", ascending: true)
+        fetchRequest.sortDescriptors = [sortDescriptor]
         do {
         stationArray = try context.fetch(fetchRequest) as! [Station]
         } catch {
@@ -76,7 +90,7 @@ class StationsViewController: UIViewController, UITableViewDataSource, UITableVi
         cell.availableSlotsLabel.text = station.availableSlotsString
         cell.availableBikesLabel.backgroundColor = station.availableBikesColor
         cell.availableSlotsLabel.backgroundColor = station.availableSlotsColor
-        cell.distanceLabel.text = "212 m"
+        cell.distanceLabel.text = String(station.distance)
         
         return cell
     }
@@ -103,6 +117,11 @@ class StationsViewController: UIViewController, UITableViewDataSource, UITableVi
     // MARK: - HTTP Request
     
     func parseStationsJSON(){
+        
+        if stationArray.count == 0 {
+            activityIndicatorView.startAnimating()
+        }
+        
         let session = URLSession.shared
         let getOnlineStations = session.dataTask(with: stationsListUrl) { (data, response, error) in
             
@@ -123,6 +142,10 @@ class StationsViewController: UIViewController, UITableViewDataSource, UITableVi
             guard let mime = response?.mimeType, mime == "application/json" else {
                 print("Wrong MIME type!")
                 return
+            }
+            
+            DispatchQueue.main.async {
+                self.activityIndicatorView.stopAnimating()
             }
             
             do {
@@ -233,6 +256,39 @@ class StationsViewController: UIViewController, UITableViewDataSource, UITableVi
         }
         return nil
     }
+    
+    // MARK: - UserLocation
+    
+    // MARK: - CLLocationManagerDelegate
+    func locationManager(_ manager: CLLocationManager,
+                         didUpdateLocations locations: [CLLocation]){
+        if (locations.count > 0){
+        userLocation = locations.last
+        }
+        
+        for station in stationArray {
+            let stationLocation = CLLocation(latitude: station.coordinate.latitude, longitude: station.coordinate.longitude)
+            if let stationDistance = self.userLocation?.distance(from: stationLocation){
+                station.distance = Double(lround(stationDistance))
+            } else {
+                station.distance = 0
+            }
+        }
+        
+        let sortedStations = stationArray.sorted(by: {$0.distance < $1.distance})
+        stationArray = sortedStations
+        tableView.reloadData()
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        userLocation = nil
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        print("locationManager didChangeAuthorization")
+        print(status)
+    }
+
     
 }
 

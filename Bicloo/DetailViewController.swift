@@ -52,6 +52,9 @@ class DetailViewController: UIViewController, MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         
+        // Prevents the userLocation blue Annotation to be customized as station
+        guard annotation is Station else {return nil}
+        
         let identifier = "StationAnnotation"
         var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKMarkerAnnotationView
             annotationView?.canShowCallout = false

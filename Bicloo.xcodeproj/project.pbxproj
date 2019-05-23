@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		0EC7D2712292F4C300AECD34 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC7D2702292F4C300AECD34 /* AppDelegate.swift */; };
 		0EC7D2732292F4C300AECD34 /* StationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC7D2722292F4C300AECD34 /* StationsViewController.swift */; };
-		0EC7D2782292F4C300AECD34 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0EC7D2762292F4C300AECD34 /* Main.storyboard */; };
 		0EC7D27A2292F4C300AECD34 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0EC7D2792292F4C300AECD34 /* Assets.xcassets */; };
 		0EC7D27D2292F4C300AECD34 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0EC7D27B2292F4C300AECD34 /* LaunchScreen.storyboard */; };
 		0EC7D2852293EB3A00AECD34 /* StationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC7D2842293EB3A00AECD34 /* StationTableViewCell.swift */; };
@@ -20,13 +19,14 @@
 		0EC7D296229443BF00AECD34 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC7D295229443BF00AECD34 /* DetailViewController.swift */; };
 		0EC7D29822944DA300AECD34 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC7D29722944DA300AECD34 /* MapViewController.swift */; };
 		6F65A63722957D7600DC8FC7 /* UIColor+Bicloo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F65A63622957D7600DC8FC7 /* UIColor+Bicloo.swift */; };
+		6F65A63A229688F100DC8FC7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F65A638229688F000DC8FC7 /* Main.storyboard */; };
+		FFBB1194D8CA2A50354822FD /* Pods_Bicloo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B5BDA8CBC70887D970C2708 /* Pods_Bicloo.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0EC7D26D2292F4C300AECD34 /* Bicloo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bicloo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0EC7D2702292F4C300AECD34 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0EC7D2722292F4C300AECD34 /* StationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationsViewController.swift; sourceTree = "<group>"; };
-		0EC7D2772292F4C300AECD34 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0EC7D2792292F4C300AECD34 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0EC7D27C2292F4C300AECD34 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0EC7D27E2292F4C300AECD34 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -37,7 +37,12 @@
 		0EC7D292229428A000AECD34 /* Station+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Station+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		0EC7D295229443BF00AECD34 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		0EC7D29722944DA300AECD34 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		6B5BDA8CBC70887D970C2708 /* Pods_Bicloo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bicloo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F65A63622957D7600DC8FC7 /* UIColor+Bicloo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Bicloo.swift"; sourceTree = "<group>"; };
+		6F65A639229688F000DC8FC7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		6F65A63B2296A61400DC8FC7 /* Model 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model 2.xcdatamodel"; sourceTree = "<group>"; };
+		9665EFF0208AB77D9CB5ED07 /* Pods-Bicloo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bicloo.release.xcconfig"; path = "Target Support Files/Pods-Bicloo/Pods-Bicloo.release.xcconfig"; sourceTree = "<group>"; };
+		D29072218A477AD9D50694A5 /* Pods-Bicloo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bicloo.debug.xcconfig"; path = "Target Support Files/Pods-Bicloo/Pods-Bicloo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +50,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FFBB1194D8CA2A50354822FD /* Pods_Bicloo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,6 +62,8 @@
 			children = (
 				0EC7D26F2292F4C300AECD34 /* Bicloo */,
 				0EC7D26E2292F4C300AECD34 /* Products */,
+				5FC891A058B61E229A3698FA /* Pods */,
+				A80E3B32807C98023101C6A9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -75,17 +83,34 @@
 				0EC7D295229443BF00AECD34 /* DetailViewController.swift */,
 				0EC7D29722944DA300AECD34 /* MapViewController.swift */,
 				0EC7D2842293EB3A00AECD34 /* StationTableViewCell.swift */,
-				0EC7D2762292F4C300AECD34 /* Main.storyboard */,
 				0EC7D28622941E6500AECD34 /* Model.xcdatamodeld */,
 				0EC7D291229428A000AECD34 /* Station+CoreDataClass.swift */,
 				0EC7D292229428A000AECD34 /* Station+CoreDataProperties.swift */,
 				0EC7D28D2294249C00AECD34 /* Station+MKAnnotation.swift */,
+				6F65A638229688F000DC8FC7 /* Main.storyboard */,
 				0EC7D2792292F4C300AECD34 /* Assets.xcassets */,
 				0EC7D27B2292F4C300AECD34 /* LaunchScreen.storyboard */,
 				0EC7D27E2292F4C300AECD34 /* Info.plist */,
 				6F65A63622957D7600DC8FC7 /* UIColor+Bicloo.swift */,
 			);
 			path = Bicloo;
+			sourceTree = "<group>";
+		};
+		5FC891A058B61E229A3698FA /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D29072218A477AD9D50694A5 /* Pods-Bicloo.debug.xcconfig */,
+				9665EFF0208AB77D9CB5ED07 /* Pods-Bicloo.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		A80E3B32807C98023101C6A9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6B5BDA8CBC70887D970C2708 /* Pods_Bicloo.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -95,9 +120,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0EC7D2812292F4C300AECD34 /* Build configuration list for PBXNativeTarget "Bicloo" */;
 			buildPhases = (
+				FF062806B71E0580E1F88168 /* [CP] Check Pods Manifest.lock */,
 				0EC7D2692292F4C300AECD34 /* Sources */,
 				0EC7D26A2292F4C300AECD34 /* Frameworks */,
 				0EC7D26B2292F4C300AECD34 /* Resources */,
+				1479D0155FCB62A873C8A29E /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -147,13 +174,60 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6F65A63A229688F100DC8FC7 /* Main.storyboard in Resources */,
 				0EC7D27D2292F4C300AECD34 /* LaunchScreen.storyboard in Resources */,
 				0EC7D27A2292F4C300AECD34 /* Assets.xcassets in Resources */,
-				0EC7D2782292F4C300AECD34 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1479D0155FCB62A873C8A29E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Bicloo/Pods-Bicloo-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Bicloo/Pods-Bicloo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FF062806B71E0580E1F88168 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Bicloo-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		0EC7D2692292F4C300AECD34 /* Sources */ = {
@@ -176,20 +250,20 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		0EC7D2762292F4C300AECD34 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				0EC7D2772292F4C300AECD34 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		0EC7D27B2292F4C300AECD34 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				0EC7D27C2292F4C300AECD34 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		6F65A638229688F000DC8FC7 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6F65A639229688F000DC8FC7 /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -311,6 +385,7 @@
 		};
 		0EC7D2822292F4C300AECD34 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D29072218A477AD9D50694A5 /* Pods-Bicloo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -328,6 +403,7 @@
 		};
 		0EC7D2832292F4C300AECD34 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9665EFF0208AB77D9CB5ED07 /* Pods-Bicloo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -370,9 +446,10 @@
 		0EC7D28622941E6500AECD34 /* Model.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				6F65A63B2296A61400DC8FC7 /* Model 2.xcdatamodel */,
 				0EC7D28722941E6500AECD34 /* Model.xcdatamodel */,
 			);
-			currentVersion = 0EC7D28722941E6500AECD34 /* Model.xcdatamodel */;
+			currentVersion = 6F65A63B2296A61400DC8FC7 /* Model 2.xcdatamodel */;
 			path = Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

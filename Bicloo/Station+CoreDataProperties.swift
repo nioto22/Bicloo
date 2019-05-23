@@ -20,6 +20,7 @@ extension Station {
     @NSManaged public var identifier: String?
     @NSManaged public var name: String?
     @NSManaged public var address: String?
+    @NSManaged public var distance: Double
     @NSManaged public var latitude: String?
     @NSManaged public var longitude: String?
     @NSManaged public var status: String?

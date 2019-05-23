@@ -20,6 +20,8 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     
+    @IBOutlet weak var nearMeButton: UIButton!
+    
     var stationArray: [Station] = []
     var selectedStation: Station!
     var displayMode: DisplayMode = DisplayMode.Bikes
@@ -36,6 +38,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         mapView.setRegion(mapRegion, animated: false)
         mapView.delegate = self
         
+   
         
     }
 
@@ -83,6 +86,9 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         
+        // Prevents the userLocation blue Annotation to be customized as station
+        guard annotation is Station else {return nil}
+        
         let identifier = "StationAnnotation"
         var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKMarkerAnnotationView
         
@@ -118,7 +124,20 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             performSegue(withIdentifier: "showStationDetailSegue", sender: self)
         }
     }
+    
+    
+    @IBAction func nearMeButtonPressed(_ sender: Any) {
         
+        let userLocation = mapView.userLocation.coordinate
+        if (userLocation.latitude != 0 && userLocation.longitude != 0) {
+        let locationRadius = CLLocationDistance(500)
+        let mapRegion = MKCoordinateRegion.init(center: userLocation, latitudinalMeters: locationRadius,longitudinalMeters: locationRadius)
+        mapView.setRegion(mapRegion, animated: true)
+        mapView.delegate = self
+        }
+    }
+    
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showStationDetailSegue" {
             if let detailVC = segue.destination as? DetailViewController{
